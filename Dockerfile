@@ -25,5 +25,10 @@ RUN wget -q -O /usr/local/bin/goss https://github.com/aelsabbahy/goss/releases/d
 
 RUN echo '# BLANK FSTAB' > /etc/fstab
 
+RUN sed -i 's/PrivateNetwork=yes/PrivateNetwork=no/' /lib/systemd/system/systemd-localed.service && sed -i 's/PrivateDevices=yes/PrivateDevices=no/' /lib/systemd/system/systemd-localed.service \
+    && sed -i 's/PrivateNetwork=yes/PrivateNetwork=no/' /lib/systemd/system/systemd-hostnamed.service && sed -i 's/PrivateDevices=yes/PrivateDevices=no/' /lib/systemd/system/systemd-hostnamed.service \
+    && sed -i 's/PrivateNetwork=yes/PrivateNetwork=no/' /lib/systemd/system/systemd-resolved.service && sed -i 's/PrivateDevices=yes/PrivateDevices=no/' /lib/systemd/system/systemd-resolved.service \
+    && sed -i 's/PrivateNetwork=yes/PrivateNetwork=no/' /lib/systemd/system/systemd-timedated.service && sed -i 's/PrivateDevices=yes/PrivateDevices=no/' /lib/systemd/system/systemd-timedated.service
+
 VOLUME [ "/tmp", "/run", "/run/lock" ]
 ENTRYPOINT ["/lib/systemd/systemd"]
