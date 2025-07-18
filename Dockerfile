@@ -15,7 +15,7 @@ RUN (for i in *; do [ "${i}" = "systemd-tmpfiles-setup.service" ] || rm -f "${i}
     rm -f /lib/systemd/system/basic.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
-RUN yum -y install which wget less python3-pip sudo vim curl \
+RUN yum -y install which wget less python3-pip sudo vim curl procps-ng \
     && yum clean all && rm -rf /tmp/* /var/tmp/* /usr/share/doc /usr/share/man
 
 RUN python3 -m pip install --no-cache-dir --upgrade pip \
